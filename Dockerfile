@@ -29,7 +29,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     go build -trimpath -ldflags="-s -w" -o bin/service
 
 FROM alpine:3.15
-RUN apk update && apk add --no-cache ncurses bash ttyd tini openjdk12-jre-headless && \
+RUN apk update && apk add --no-cache bash tini openjdk12-jre-headless && \
     mkdir -p /home/sdw/config && \
     echo 'cd /home/sdw;/opt/ords/bin/ords install --admin-user SYS --db-hostname host.docker.internal --db-port 1521 --db-servicename xepdb1 --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true --proxy-user --password-stdin < /home/sdw/default.pwd;/opt/ords/bin/ords serve' > /home/sdw.sh && \
     chown -R 1000:1000 /home/sdw /home/sdw.sh && \
