@@ -1,0 +1,17 @@
+{
+  "icon": "sdw.svg",
+  "vm": {
+    "composefile": "docker-compose.yml",
+    "exposes": { "socket": "sdw-docker-extension.sock" }
+  },
+  "ui": {
+    "dashboard-tab": {
+      "title": "SQLDeveloper Web",
+      "root": "/ui",
+      "src": "index.html",
+      "backend": {
+        "socket": "sdw-docker-extension.sock"
+      }
+    }
+  }
+}

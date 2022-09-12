@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  sdw-docker-extension:
+    image: ${DESKTOP_PLUGIN_IMAGE}
+    hostname: sdw-docker-extension
+    ports:
+      - 9891:8080
+    volumes:
+      - sdw_home:/home/sdw
+    environment:
+      - ORDS_CONFIG=/home/sdw/config
+      - HOME=/home/sdw
+volumes:
+  sdw_home:
