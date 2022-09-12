@@ -32,7 +32,7 @@ export function App() {
     };
 
     start().then(() => {
-      let retries = 20;
+      let retries = 30;
       let timer = setInterval(async () => {
 
         if (retries == 0) {

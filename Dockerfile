@@ -41,9 +41,10 @@ LABEL org.opencontainers.image.title="Oracle SQLDeveloper Web"
 LABEL org.opencontainers.image.description="Docker Extension for using an embedded version of Oracle SQLDeveloper Web."
 LABEL org.opencontainers.image.vendor="Marcelo Ochoa"
 LABEL com.docker.desktop.extension.api.version=">= 0.2.3"
-LABEL com.docker.extension.screenshots="[{\"alt\":\"Sample usage using scott user\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot2.png\"},\
-    {\"alt\":\"Some formating options\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
-    {\"alt\":\"Explain Plan\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot4.png\"}]"
+LABEL com.docker.extension.screenshots="[{\"alt\":\"Login Page\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot1.png\"},\
+    {\"alt\":\"SQL: Execute queries and scripts, and create database objects\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
+    {\"alt\":\"REST: Deploy REST APIs for your database\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
+    {\"alt\":\"JSON: Manage your JSON Document Database\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot4.png\"}]"
 LABEL com.docker.extension.publisher-url="https://github.com/marcelo-ochoa/sdw-docker-extension"
 LABEL com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://github.com/marcelo-ochoa/sdw-docker-extension/blob/main/README.md\"},\
     {\"title\":\"License\",\"url\":\"https://github.com/marcelo-ochoa/sdw-docker-extension/blob/main/LICENSE\"}]"
