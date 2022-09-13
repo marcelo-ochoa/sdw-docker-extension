@@ -31,9 +31,6 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 FROM alpine:3.15
 RUN apk update && apk add --no-cache bash tini openjdk12-jre-headless && \
     mkdir -p /home/sdw/config && \
-    echo 'cd /home/sdw;/opt/ords/bin/ords install --admin-user SYS --db-hostname host.docker.internal --db-port 1521 --db-servicename xepdb1 --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true --proxy-user --password-stdin < /home/sdw/default.pwd;/opt/ords/bin/ords serve' > /home/sdw.sh && \
-    chown -R 1000:1000 /home/sdw /home/sdw.sh && \
-    chmod u+rwx /home/sdw.sh && \
     echo "sdw:x:1000:1000:sdw:/home/sdw:/bin/bash" >> /etc/passwd && \
     echo "sdw:x:1000:sdw" >> /etc/group
 
@@ -59,6 +56,7 @@ COPY sdw.svg metadata.json docker-compose.yml ./
 COPY --from=client-builder /app/client/dist ui
 COPY --from=client-builder /opt/ords /opt/ords
 COPY --from=builder /backend/bin/service /
+COPY --chown=1000:1000 sdw.sh /home/
 COPY --chown=1000:1000 default.pwd /home/sdw/
 
 ENTRYPOINT ["/sbin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]
