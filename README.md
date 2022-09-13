@@ -48,11 +48,11 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 Before using SQLDeveloper Web you should create ADMIN user as:
 
 ```sql
-SQL> create user ADMIN identified by Oracle_2022
-     default tablespace SYSAUX
-     temporary tablespace TEMP
-     quota unlimited on SYSAUX;
+SQL> create user admin identified by Oracle_2022
+     default tablespace sysaux
+     temporary tablespace temp;
 SQL> grant connect,dba to ADMIN;
+SQL> grant execute on dbms_soda_admin to admin;
 SQL> BEGIN
         ords_admin.enable_schema(
         p_enabled => TRUE,
