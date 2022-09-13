@@ -39,7 +39,7 @@ LABEL org.opencontainers.image.description="Docker Extension for using an embedd
 LABEL org.opencontainers.image.vendor="Marcelo Ochoa"
 LABEL com.docker.desktop.extension.api.version=">= 0.2.3"
 LABEL com.docker.extension.screenshots="[{\"alt\":\"Login Page\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot1.png\"},\
-    {\"alt\":\"SQL: Execute queries and scripts, and create database objects\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
+    {\"alt\":\"SQL: Execute queries and scripts, and create database objects\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot2.png\"},\
     {\"alt\":\"REST: Deploy REST APIs for your database\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
     {\"alt\":\"JSON: Manage your JSON Document Database\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot4.png\"}]"
 LABEL com.docker.extension.publisher-url="https://github.com/marcelo-ochoa/sdw-docker-extension"
