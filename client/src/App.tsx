@@ -83,7 +83,7 @@ export function App() {
           </Grid>
         </Grid>
       )}
-      {ready &&  (window.location.href = 'http://localhost:9891/ords/admin/sign-in/?username=ADMIN&r=_sdw/')}
+      {ready &&  (window.location.href = 'http://localhost:9891/ords/sql-developer')}
     </>
   );
 }
