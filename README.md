@@ -27,9 +27,9 @@ Once the extension is installed a new extension is listed at the pane Extension 
 
 By clicking at SQLDeveloper Web icon the extension main window will display a progress bar for a few second and finally SQLDeveloper Web is launched.
 
-![Progress bar indicator](docs/images/screenshot1.png?raw=true)
+![Progress bar indicator](docs/images/screenshot0.png?raw=true)
 
-SQLDeveloper Web is not logged into the Oracle RDBMS you should log using this page, for example for ADMIN user on OracleXE is.
+SQLDeveloper Web is not logged into the Oracle RDBMS you should log using this page, put ADMIN/Oracle_2022 for OracleXE local installation.
 
 ![Connect sample](docs/images/screenshot1.png?raw=true)
 
@@ -42,6 +42,29 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 - PDB: xepdb1
 - Username: ORDS_PUBLIC_USER
 - Password: Oracle_2022
+
+## Creating ADMIN SQLDeveloper Web user
+
+Before using SQLDeveloper Web you should create ADMIN user as:
+
+```sql
+SQL> create user ADMIN identified by Oracle_2022
+     default tablespace SYSAUX
+     temporary tablespace TEMP
+     quota unlimited on SYSAUX;
+SQL> grant connect,dba to ADMIN;
+SQL> BEGIN
+        ords_admin.enable_schema(
+        p_enabled => TRUE,
+        p_schema => 'ADMIN',
+        p_url_mapping_type => 'BASE_PATH',
+        p_url_mapping_pattern => 'admin',
+        p_auto_rest_auth => TRUE
+      );
+      commit;
+    END;
+/
+```
 
 ## Enable scott user to use SQLDeveloper Web
 
