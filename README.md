@@ -45,7 +45,7 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 
 ## Creating ADMIN SQLDeveloper Web user
 
-Before using SQLDeveloper Web you should create ADMIN user as:
+Once you got above image on Docker Desktop page you can create an ADMIN user to use SQLDeveloper Web just open SQLcl extension or log into OracleXE console and run:
 
 ```sql
 SQL> create user admin identified by Oracle_2022

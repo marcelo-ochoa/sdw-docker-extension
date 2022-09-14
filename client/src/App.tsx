@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Grid, LinearProgress, Typography, useTheme } from '@mui/material';
 import { createDockerDesktopClient } from '@docker/extension-api-client';
-
+import { LazyLog,ScrollFollow } from "react-lazylog";
 
 const client = createDockerDesktopClient();
 
@@ -12,6 +12,7 @@ function useDockerDesktopClient() {
 export function App() {
   const [ready, setReady] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
+  const [logs, setLogs] = useState<string>("fetching logs...");
   const ddClient = useDockerDesktopClient();
   const theme = useTheme();
 
@@ -32,7 +33,7 @@ export function App() {
     };
 
     start().then(() => {
-      let retries = 30;
+      let retries = 60;
       let timer = setInterval(async () => {
 
         if (retries == 0) {
@@ -40,6 +41,18 @@ export function App() {
           setUnavailable(true);
         }
 
+        const sdwlog = await ddClient.docker.cli.exec("exec", [
+          "mochoa_sdw-docker-extension-desktop-extension-service",
+          "tail",
+          "-100",
+          "/tmp/ords.out"
+        ]);
+        if (sdwlog.stderr !== "") {
+          ddClient.desktopUI.toast.error(sdwlog.stderr);
+        } else {
+          setLogs(sdwlog.stdout);
+        }
+  
         try {
           const result = await ddClient.extension.vm?.service?.get('/ready');
 
@@ -80,6 +93,14 @@ export function App() {
               Waiting for SQLDeveloper Web to be ready. It may take some seconds if
               it's the first time.
             </Typography>
+            <div style={{ "textAlign": 'left', "height": 400, "width": "100%" }}>
+              <ScrollFollow
+                startFollowing
+                render={({ onScroll, follow, startFollowing, stopFollowing }) => (
+                  <LazyLog text={logs} stream follow={follow} />
+                )}
+              />
+            </div>
           </Grid>
         </Grid>
       )}
