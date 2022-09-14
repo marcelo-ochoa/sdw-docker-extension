@@ -81,6 +81,31 @@ BEGIN
   );
   commit;
 END;
+GRANT SODA_APP to scott;
+```
+
+### Sample upload using SODA interface
+
+You can load this sample purchase-order data set into a collection purchaseorder on your Autonomous Database with SODA for REST, using these curl commands:
+
+```bash
+curl -X GET "https://raw.githubusercontent.com/oracle/db-sample-schemas/master/order_entry/POList.json" -o POList.json
+
+curl -X PUT -u 'scott:tiger' \
+"http://localhost:9891/ords/scott/soda/latest/purchaseorder"
+
+curl -X POST -u 'scott:tger' -H 'Content-type: application/json' -d @POList.json \
+"http://localhost:9891/ords/scott/soda/latest/purchaseorder?action=insert"
+```
+
+You can then use this purchase-order data to try out examples in [Oracle Database JSON Developer’s Guide](https://docs.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database/adbsa&id=ADJSN).
+
+For example, the following query selects both the id of a JSON document and values from the JSON purchase-order collection stored in column json_document of table purchaseorder. The values selected are from fields PONumber, Reference, and Requestor of JSON column json_document, which are projected from the document as virtual columns (see [SQL NESTED Clause Instead of JSON_TABLE](https://docs.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database/adbsa&id=ADJSN-GUID-D870AAFF-58B0-4162-AC11-4DDC74B608A5) for more information).
+
+```sql
+SELECT id, t.*
+  FROM purchaseorder
+    NESTED json_document COLUMNS(PONumber, Reference, Requestor) t;
 ```
 
 ## Uninstall
