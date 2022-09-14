@@ -94,7 +94,7 @@ curl -X GET "https://raw.githubusercontent.com/oracle/db-sample-schemas/master/o
 curl -X PUT -u 'scott:tiger' \
 "http://localhost:9891/ords/scott/soda/latest/purchaseorder"
 
-curl -X POST -u 'scott:tger' -H 'Content-type: application/json' -d @POList.json \
+curl -X POST -u 'scott:tiger' -H 'Content-type: application/json' -d @POList.json \
 "http://localhost:9891/ords/scott/soda/latest/purchaseorder?action=insert"
 ```
 
