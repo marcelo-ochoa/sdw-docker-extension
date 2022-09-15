@@ -86,8 +86,8 @@ export function App() {
         </Grid>
       )}
       {!ready && (
-        <Grid container flex={1} direction="column" padding="16px 32px" height="100%" justifyContent="center" alignItems="center">
-          <Grid item>
+        <Grid container flex={1} direction="column" spacing={4}>
+          <Grid item justifyContent="center" textAlign="center" minHeight="80px">
             <LinearProgress/>
             <Typography mt={2}>
               Waiting for SQLDeveloper Web to be ready. It may take some seconds if

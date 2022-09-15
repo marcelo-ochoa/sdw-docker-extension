@@ -33,7 +33,7 @@ SQLDeveloper Web is not logged into the Oracle RDBMS you should log using this p
 
 ![Connect sample](docs/images/screenshot1.png?raw=true)
 
-Note that this exatension is pre-configured to connect to an OracleXE running as Docker Extension.
+Note that this extension is pre-configured to connect to an OracleXE running as Docker Extension.
 
 It means OracleXE started using OracleXE Docker Desktop Extension means for a SQLDeveloper Web pool.xml:
 
