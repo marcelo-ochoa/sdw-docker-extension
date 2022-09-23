@@ -33,7 +33,7 @@ export function App() {
     };
 
     start().then(() => {
-      let retries = 60;
+      let retries = 120;
       let timer = setInterval(async () => {
 
         if (retries == 0) {
