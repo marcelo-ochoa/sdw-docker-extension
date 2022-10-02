@@ -38,6 +38,7 @@ LABEL org.opencontainers.image.title="Oracle SQLDeveloper Web"
 LABEL org.opencontainers.image.description="Docker Extension for using an embedded version of Oracle SQLDeveloper Web."
 LABEL org.opencontainers.image.vendor="Marcelo Ochoa"
 LABEL com.docker.desktop.extension.api.version=">= 0.2.3"
+LABEL com.docker.extension.categories="database,utility-tools"
 LABEL com.docker.extension.screenshots="[{\"alt\":\"Login Page\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot1.png\"},\
     {\"alt\":\"SQL: Execute queries and scripts, and create database objects\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot2.png\"},\
     {\"alt\":\"REST: Deploy REST APIs for your database\", \"url\":\"https://raw.githubusercontent.com/marcelo-ochoa/sdw-docker-extension/main/docs/images/screenshot3.png\"},\
