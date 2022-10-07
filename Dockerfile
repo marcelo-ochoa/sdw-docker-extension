@@ -1,11 +1,12 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
-ARG VERSION=22.2
-ARG MINOR=1
-ARG PATCH=202
-ARG BUILD=1302
+ARG VERSION=22.3
+ARG MINOR=0
+ARG PATCH=278
+ARG BUILD=1755
 WORKDIR /app/client
 # https://www.oracle.com/database/sqldeveloper/technologies/db-actions/download/#
-RUN wget https://download.oracle.com/otn_software/java/ords/ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip && unzip -d /opt/ords ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip
+ADD ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip .
+RUN unzip -d /opt/ords ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip
 # cache packages in layer
 COPY client/package.json /app/client/package.json
 COPY client/package-lock.json /app/client/package-lock.json
