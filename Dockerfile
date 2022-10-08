@@ -58,7 +58,6 @@ COPY sdw.svg metadata.json docker-compose.yml ./
 COPY --from=client-builder /app/client/dist ui
 COPY --from=client-builder /opt/ords /opt/ords
 COPY --from=builder /backend/bin/service /
-COPY --chown=1000:1000 sdw.sh /home/
-COPY --chown=1000:1000 default.pwd /home/sdw/
+COPY --chown=1000:1000 sdw.sh adb.sh default.pwd adb.pwd /home/sdw/
 
 ENTRYPOINT ["/sbin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]

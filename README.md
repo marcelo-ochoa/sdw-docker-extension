@@ -81,7 +81,7 @@ BEGIN
   );
   commit;
 END;
-GRANT SODA_APP to scott;
+GRANT SODA_APP,CREATE VIEW to scott;
 ```
 
 ### Sample upload using SODA interface
@@ -106,6 +106,23 @@ For example, the following query selects both the id of a JSON document and valu
 SELECT id, t.*
   FROM purchaseorder
     NESTED json_document COLUMNS(PONumber, Reference, Requestor) t;
+```
+
+## Connect SQLDeveloper Web to Autonomos DB
+
+Starting with 22.3.0 release there is a quick setup for using SQLDeveloper connected to your autonomos DB, here the instructions to connect using the extension.
+Note: /home/sdw/adb.pwd includes at the first line your ADMIN Adb password, next two lines must have a new random strong password used for ORDS_PUBLIC_USER2 schema.
+
+```bash
+docker cp /home/mochoa/Downloads/Wallet_DBparquet.zip mochoa_sdw-docker-extension-desktop-extension-service:/home/sdw/Wallet.zip
+docker exec -ti mochoa_sdw-docker-extension-desktop-extension-service bash
+bash-5.1# vi /home/sdw/adb.pwd
+bash-5.1# cat /home/sdw/adb.pwd
+bash-5.1# rm -rf /home/sdw/config/*
+bash-5.1# rm -rf /tmp/ords/*
+bash-5.1# cp /home/sdw/adb.sh /home/sdw/sdw.sh
+bash-5.1# exit
+docker restart mochoa_sdw-docker-extension-desktop-extension-service
 ```
 
 ## Uninstall

@@ -107,7 +107,7 @@ func (t *TTYD) Start(theme Theme) error {
 	}
 	if !t.IsStarted() {
 		args := []string{"-c"}
-		args = append(args, fmt.Sprintf("/home/sdw.sh -t 'theme=%s'", theme))
+		args = append(args, fmt.Sprintf("/home/sdw/sdw.sh -t 'theme=%s'", theme))
 	
 		cmd := exec.Command("/bin/bash", args...)
 		if err := cmd.Start(); err != nil {
