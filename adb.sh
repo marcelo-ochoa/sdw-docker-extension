@@ -1,9 +1,5 @@
 #!/bin/bash
 
-killall java
-
-set -ue
-
 if [ "$#" -ne 2 ]; then
     echo "Illegal number of parameters"
     echo "usage: "
@@ -11,6 +7,13 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
+if [ $(cat /tmp/sdw.theme) <> $2  ]; then
+   killall java
+fi
+
+echo "$2" >/tmp/sdw.theme
+
+set -ue
 
 if [ -f /home/sdw/config/databases/default/pool.xml ]; then
    cd /home/sdw;

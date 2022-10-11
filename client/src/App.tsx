@@ -25,7 +25,6 @@ export function App() {
       let colors = {
         background: theme.palette.background.default,
         foreground: theme.palette.text.primary,
-        // @ts-expect-error
         cursor: theme.palette.docker.grey[800],
         selection: theme.palette.primary.light,
       };
@@ -33,7 +32,7 @@ export function App() {
     };
 
     start().then(() => {
-      let retries = 120;
+      let retries = 240;
       let timer = setInterval(async () => {
 
         if (retries == 0) {
