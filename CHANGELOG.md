@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v22.3.1
+
+- Update release with latest ORDs image.
+- Update SVG icon.
+- Increase JVM memory max
+- Support for MongoDB API
+
 ## v22.3.0
 
 - Update release with latest ORDs image.
