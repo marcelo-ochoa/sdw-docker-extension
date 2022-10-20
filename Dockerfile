@@ -1,8 +1,8 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
 ARG VERSION=22.3
-ARG MINOR=0
-ARG PATCH=278
-ARG BUILD=1755
+ARG MINOR=1
+ARG PATCH=290
+ARG BUILD=1647
 WORKDIR /app/client
 # https://www.oracle.com/database/sqldeveloper/technologies/db-actions/download/#
 ADD ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip .
@@ -58,6 +58,7 @@ COPY sdw.svg metadata.json docker-compose.yml ./
 COPY --from=client-builder /app/client/dist ui
 COPY --from=client-builder /opt/ords /opt/ords
 COPY --from=builder /backend/bin/service /
-COPY --chown=1000:1000 sdw.sh adb.sh default.pwd adb.pwd /home/sdw/
+COPY --chown=1000:1000 sdw.sh adb.sh cleanup.sh default.pwd adb.pwd /home/sdw/
+RUN  sed -i 's/\${JAVA}/\${JAVA} -Xmx2048m/g' /opt/ords/bin/ords
 
 ENTRYPOINT ["/sbin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]
