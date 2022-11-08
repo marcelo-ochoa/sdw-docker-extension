@@ -1,4 +1,4 @@
-# Docker Extension
+# SQLDeveloper Web Docker Extension
 
 SQLDeveloper Web Extension for Docker Desktop
 
@@ -118,8 +118,7 @@ docker cp /home/mochoa/Downloads/Wallet_DBparquet.zip mochoa_sdw-docker-extensio
 docker exec -ti mochoa_sdw-docker-extension-desktop-extension-service bash
 bash-5.1# vi /home/sdw/adb.pwd
 bash-5.1# cat /home/sdw/adb.pwd
-bash-5.1# rm -rf /home/sdw/config/*
-bash-5.1# rm -rf /tmp/ords/*
+bash-5.1# /home/sdw/cleanup.sh
 bash-5.1# mv /home/sdw/sdw.sh /home/sdw/sdw.sh.old
 bash-5.1# cp /home/sdw/adb.sh /home/sdw/sdw.sh
 bash-5.1# exit
