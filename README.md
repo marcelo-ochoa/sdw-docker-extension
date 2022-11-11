@@ -7,10 +7,10 @@ SQLDeveloper Web Extension for Docker Desktop
 Until this extension is ready at Docker Extension Hub you can install just by executing:
 
 ```bash
-$ docker extension install mochoa/sdw-docker-extension:22.3.1
+$ docker extension install mochoa/sdw-docker-extension:22.3.3
 Extensions can install binaries, invoke commands and access files on your machine. 
 Are you sure you want to continue? [y/N] y
-Installing new extension "mochoa/sdw-docker-extension:22.3.1"
+Installing new extension "mochoa/sdw-docker-extension:22.3.3"
 Installing service in Desktop VM...
 Setting additional compose attributes
 VM service started
@@ -48,12 +48,12 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 Once you got above image on Docker Desktop page you can create an ADMIN user to use SQLDeveloper Web just open SQLcl extension or log into OracleXE console and run:
 
 ```sql
-SQL> create user admin identified by Oracle_2022
-     default tablespace sysaux
-     temporary tablespace temp;
-SQL> grant connect,dba to ADMIN;
-SQL> grant execute on dbms_soda_admin to admin;
-SQL> BEGIN
+create user admin identified by Oracle_2022
+       default tablespace sysaux
+       temporary tablespace temp;
+grant connect,dba to ADMIN;
+grant execute on dbms_soda_admin to admin;
+BEGIN
         ords_admin.enable_schema(
         p_enabled => TRUE,
         p_schema => 'ADMIN',
@@ -62,7 +62,7 @@ SQL> BEGIN
         p_auto_rest_auth => TRUE
       );
       commit;
-    END;
+END;
 /
 ```
 
@@ -130,7 +130,7 @@ docker restart mochoa_sdw-docker-extension-desktop-extension-service
 To uninstall the extension just execute:
 
 ```bash
-$ docker extension uninstall mochoa/sdw-docker-extension:22.3.1
+$ docker extension uninstall mochoa/sdw-docker-extension:22.3.3
 Extension "Oracle SQLDeveloper Web client tool" uninstalled successfully
 ```
 

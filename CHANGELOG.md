@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v22.3.3
+
+- Update release with latest ORDs image.
+
 ## v22.3.1
 
 - Update release with latest ORDs image.
