@@ -1,6 +1,6 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
 ARG VERSION=22.3
-ARG MINOR=1
+ARG MINOR=3
 ARG PATCH=311
 ARG BUILD=1929
 WORKDIR /app/client
