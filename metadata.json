@@ -1,6 +1,4 @@
 {
-  "name": "SQLDeveloper Web",
-  "provider": "Marcelo Ochoa",
   "icon": "sdw.svg",
   "vm": {
     "composefile": "docker-compose.yml",
