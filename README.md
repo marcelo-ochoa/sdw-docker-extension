@@ -114,12 +114,15 @@ SELECT id, t.*
 If you want to enable MongDB compatible API suport for Oracle RDBMS you can execute this commands:
 
 ```bash
-docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/cleanup.sh
-docker exec mochoa_sdw-docker-extension-desktop-extension-service mkdir -p /home/sdw/mongodb/
-docker restart mochoa_sdw-docker-extension-desktop-extension-service
+docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/enablemongo.sh
 ```
 
-And thats all, just close your extension by switching to conatniers pane for example, and click again at SQLDeveloper Web Icon.
+And thats all, just open a mongo shell command line tool to connect to Oracle XE using Mongo DB compaitible API.
+Note: By enabling Mongo DB API SQLDeveloper Web is not avaible, to re-enable Web interface execute:
+
+```bash
+docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/disablemongo.sh
+```
 
 ## Connect SQLDeveloper Web to Autonomos DB
 
