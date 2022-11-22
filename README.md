@@ -71,6 +71,7 @@ END;
 If you want to enable scott user or any other database user to use SQLDeveloper Web tool just connect as ADMIN/Oracle_2022 and execute:
 
 ```sql
+GRANT SODA_APP,CREATE VIEW to scott;
 BEGIN
   ords_admin.enable_schema(
    p_enabled => TRUE,
@@ -81,7 +82,7 @@ BEGIN
   );
   commit;
 END;
-GRANT SODA_APP,CREATE VIEW to scott;
+/
 ```
 
 ### Sample upload using SODA interface
@@ -107,6 +108,18 @@ SELECT id, t.*
   FROM purchaseorder
     NESTED json_document COLUMNS(PONumber, Reference, Requestor) t;
 ```
+
+## Enable MongoDB support
+
+If you want to enable MongDB compatible API suport for Oracle RDBMS you can execute this commands:
+
+```bash
+docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/cleanup.sh
+docker exec mochoa_sdw-docker-extension-desktop-extension-service mkdir -p /home/sdw/mongodb/
+docker restart mochoa_sdw-docker-extension-desktop-extension-service
+```
+
+And thats all, just close your extension by switching to conatniers pane for example, and click again at SQLDeveloper Web Icon.
 
 ## Connect SQLDeveloper Web to Autonomos DB
 

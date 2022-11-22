@@ -59,6 +59,6 @@ COPY --from=client-builder /app/client/dist ui
 COPY --from=client-builder /opt/ords /opt/ords
 COPY --from=builder /backend/bin/service /
 COPY --chown=1000:1000 sdw.sh adb.sh cleanup.sh default.pwd adb.pwd /home/sdw/
-RUN  sed -i 's/\${JAVA}/\${JAVA} -Xmx2048m/g' /opt/ords/bin/ords
+RUN  sed -i 's/\${JAVA}/\${JAVA} -Xmx4096m/g' /opt/ords/bin/ords
 
 ENTRYPOINT ["/sbin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]
