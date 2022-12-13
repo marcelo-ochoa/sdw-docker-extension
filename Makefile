@@ -1,8 +1,8 @@
 all: clean extension install
 
 ORG=mochoa
-VERSION=22.3
-MINOR=3
+VERSION=22.4
+MINOR=0
 IMAGE_NAME=$(ORG)/sdw-docker-extension
 TAGGED_IMAGE_NAME=$(IMAGE_NAME):$(VERSION).${MINOR}
 
