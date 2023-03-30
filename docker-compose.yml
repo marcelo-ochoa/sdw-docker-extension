@@ -5,7 +5,7 @@ services:
     image: ${DESKTOP_PLUGIN_IMAGE}
     hostname: sdw-docker-extension
     ports:
-      - 9891:8080
+      - 59891:8080
       - 27017:27017
     volumes:
       - sdw_home:/home/sdw

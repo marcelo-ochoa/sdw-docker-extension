@@ -1,8 +1,8 @@
 all: clean extension install
 
 ORG=mochoa
-VERSION=22.4
-MINOR=2
+VERSION=23.1
+MINOR=0
 IMAGE_NAME=$(ORG)/sdw-docker-extension
 TAGGED_IMAGE_NAME=$(IMAGE_NAME):$(VERSION).${MINOR}
 
@@ -11,7 +11,7 @@ clean:
 	-docker rmi $(TAGGED_IMAGE_NAME)
 
 extension:
-	docker build -t $(TAGGED_IMAGE_NAME) --build-arg VERSION=$(VERSION) --build-arg MINOR=$(MINOR) .
+	docker buildx build -t $(TAGGED_IMAGE_NAME) --build-arg VERSION=$(VERSION) --build-arg MINOR=$(MINOR) .
 
 install:
 	docker extension install -f $(TAGGED_IMAGE_NAME)

@@ -103,7 +103,7 @@ export function App() {
           </Grid>
         </Grid>
       )}
-      {ready &&  (window.location.href = 'http://localhost:9891/ords/sql-developer')}
+      {ready &&  (window.location.href = 'http://localhost:59891/ords/sql-developer')}
     </>
   );
 }

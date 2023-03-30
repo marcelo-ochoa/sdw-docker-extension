@@ -7,10 +7,10 @@ SQLDeveloper Web Extension for Docker Desktop
 Until this extension is ready at Docker Extension Hub you can install just by executing:
 
 ```bash
-$ docker extension install mochoa/sdw-docker-extension:22.4.2
+$ docker extension install mochoa/sdw-docker-extension:23.1.0
 Extensions can install binaries, invoke commands and access files on your machine. 
 Are you sure you want to continue? [y/N] y
-Installing new extension "mochoa/sdw-docker-extension:22.4.2"
+Installing new extension "mochoa/sdw-docker-extension:23.1.0"
 Installing service in Desktop VM...
 Setting additional compose attributes
 VM service started
@@ -42,6 +42,8 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 - PDB: xepdb1
 - Username: ORDS_PUBLIC_USER
 - Password: Oracle_2022
+
+Note: If you are using SQLDeveloper Web with Oracle XE Desktop Extension make sure that you have almost 5GB RAM setting on Docker Desktop (Settings -> Resources -> Memory:  5GB).
 
 ## Creating ADMIN SQLDeveloper Web user
 
@@ -93,10 +95,10 @@ You can load this sample purchase-order data set into a collection purchaseorder
 curl -X GET "https://raw.githubusercontent.com/oracle/db-sample-schemas/master/order_entry/POList.json" -o POList.json
 
 curl -X PUT -u 'scott:tiger' \
-"http://localhost:9891/ords/scott/soda/latest/purchaseorder"
+"http://localhost:59891/ords/scott/soda/latest/purchaseorder"
 
 curl -X POST -u 'scott:tiger' -H 'Content-type: application/json' -d @POList.json \
-"http://localhost:9891/ords/scott/soda/latest/purchaseorder?action=insert"
+"http://localhost:59891/ords/scott/soda/latest/purchaseorder?action=insert"
 ```
 
 You can then use this purchase-order data to try out examples in [Oracle Database JSON Developer’s Guide](https://docs.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database/adbsa&id=ADJSN).
@@ -108,6 +110,16 @@ SELECT id, t.*
   FROM purchaseorder
     NESTED json_document COLUMNS(PONumber, Reference, Requestor) t;
 ```
+
+## CLeanup config before update to a new release
+
+If you are upgrading from previous release, before log again just execute from command line:
+
+```bash
+docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/cleanup.sh
+```
+
+This is to ensure that new PLSQL package version will be upgraded from previous installation.
 
 ## Enable MongoDB support
 
@@ -146,7 +158,7 @@ docker restart mochoa_sdw-docker-extension-desktop-extension-service
 To uninstall the extension just execute:
 
 ```bash
-$ docker extension uninstall mochoa/sdw-docker-extension:22.4.2
+$ docker extension uninstall mochoa/sdw-docker-extension:23.1.0
 Extension "Oracle SQLDeveloper Web client tool" uninstalled successfully
 ```
 
