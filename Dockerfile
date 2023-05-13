@@ -1,8 +1,8 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
 ARG VERSION=23.1
-ARG MINOR=0
-ARG PATCH=086
-ARG BUILD=1423
+ARG MINOR=2
+ARG PATCH=115
+ARG BUILD=1944
 WORKDIR /app/client
 # https://www.oracle.com/database/sqldeveloper/technologies/db-actions/download/#
 ADD ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip .

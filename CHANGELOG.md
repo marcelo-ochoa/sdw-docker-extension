@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v23.1.2
+
+- Update release with latest ORDs image. See Release Notes for more details <https://www.oracle.com/tools/ords/ords-relnotes-23.1.2.html>
+- This version is pre-configured against Oracle Free 23c (gvenzl/oracle-free:23.2-slim-faststart)
+- Check frst this Docker Extension <https://hub.docker.com/extensions/mochoa/oraclefree-docker-extension>
+
 ## v23.1.0
 
 - Update release with latest ORDs image. See Release Notes for more details <https://www.oracle.com/tools/ords/ords-relnotes-23.1.html>

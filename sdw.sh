@@ -22,7 +22,7 @@ if [ -f /home/sdw/config/databases/default/pool.xml ]; then
    /opt/ords/bin/ords --config /home/sdw/config serve  >> /tmp/ords.out 2>> /tmp/ords.err
 else
    echo "Installing ORDS..." >> /tmp/ords.out
-   /opt/ords/bin/ords --config /home/sdw/config install --admin-user SYS --db-hostname host.docker.internal --db-port 1521 --db-servicename xepdb1 --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true --proxy-user --password-stdin < /home/sdw/default.pwd >> /tmp/ords.out 2>> /tmp/ords.err
+   /opt/ords/bin/ords --config /home/sdw/config install --admin-user SYS --db-hostname host.docker.internal --db-port 1521 --db-servicename freepdb1 --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true --proxy-user --password-stdin < /home/sdw/default.pwd >> /tmp/ords.out 2>> /tmp/ords.err
    echo "Starting ORDS..." >> /tmp/ords.out
    /opt/ords/bin/ords --config /home/sdw/config serve >> /tmp/ords.out 2>> /tmp/ords.err
 fi
