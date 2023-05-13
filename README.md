@@ -41,7 +41,7 @@ It means OracleXE started using OracleXE Docker Desktop Extension means for a SQ
 - Port: 1521
 - PDB: freepdb1
 - Username: ORDS_PUBLIC_USER
-- Password: Oracle_2022
+- Password: Oracle_2023
 
 Note: If you are using SQLDeveloper Web with Oracle XE Desktop Extension make sure that you have almost 5GB RAM setting on Docker Desktop (Settings -> Resources -> Memory:  5GB).
 
