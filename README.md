@@ -7,10 +7,10 @@ SQLDeveloper Web Extension for Docker Desktop
 Until this extension is ready at Docker Extension Hub you can install just by executing:
 
 ```bash
-$ docker extension install mochoa/sdw-docker-extension:23.1.2
+$ docker extension install mochoa/sdw-docker-extension:23.2.1
 Extensions can install binaries, invoke commands and access files on your machine. 
 Are you sure you want to continue? [y/N] y
-Installing new extension "mochoa/sdw-docker-extension:23.1.2"
+Installing new extension "mochoa/sdw-docker-extension:23.2.1"
 Installing service in Desktop VM...
 Setting additional compose attributes
 VM service started
@@ -111,7 +111,7 @@ SELECT id, t.*
     NESTED json_document COLUMNS(PONumber, Reference, Requestor) t;
 ```
 
-## CLeanup config before update to a new release
+## Cleanup config before update to a new release
 
 If you are upgrading from previous release, before log again just execute from command line:
 
@@ -158,7 +158,7 @@ docker restart mochoa_sdw-docker-extension-desktop-extension-service
 To uninstall the extension just execute:
 
 ```bash
-$ docker extension uninstall mochoa/sdw-docker-extension:23.1.2
+$ docker extension uninstall mochoa/sdw-docker-extension:23.2.1
 Extension "Oracle SQLDeveloper Web client tool" uninstalled successfully
 ```
 

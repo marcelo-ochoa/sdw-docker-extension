@@ -1,8 +1,8 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
-ARG VERSION=23.1
-ARG MINOR=2
-ARG PATCH=115
-ARG BUILD=1944
+ARG VERSION=23.2
+ARG MINOR=1
+ARG PATCH=200
+ARG BUILD=1208
 WORKDIR /app/client
 # https://www.oracle.com/database/sqldeveloper/technologies/db-actions/download/#
 ADD ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip .
@@ -30,7 +30,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     go build -trimpath -ldflags="-s -w" -o bin/service
 
 FROM alpine:3.15
-RUN apk update && apk add --no-cache bash tini openjdk12-jre-headless && \
+RUN apk update && apk add --no-cache bash tini openjdk17-jre-headless && \
     mkdir -p /home/sdw/config && \
     echo "sdw:x:1000:1000:sdw:/home/sdw:/bin/bash" >> /etc/passwd && \
     echo "sdw:x:1000:sdw" >> /etc/group
