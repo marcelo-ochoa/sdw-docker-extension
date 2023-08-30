@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## v23.2.2
+
+- Update release with latest ORDs image. See Release Notes for more details <https://www.oracle.com/tools/ords/ords-relnotes-23.2.2.html>
+
 ## v23.2.1
 
 - Update release with latest ORDs image. See Release Notes for more details <https://www.oracle.com/tools/ords/ords-relnotes-23.2.1.html>
