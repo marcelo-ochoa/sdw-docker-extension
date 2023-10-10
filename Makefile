@@ -11,7 +11,7 @@ clean:
 	-docker rmi $(TAGGED_IMAGE_NAME)
 
 extension:
-	docker buildx build -t $(TAGGED_IMAGE_NAME) --build-arg VERSION=$(VERSION) --build-arg MINOR=$(MINOR) .
+	docker buildx build --load -t $(TAGGED_IMAGE_NAME) --build-arg VERSION=$(VERSION) --build-arg MINOR=$(MINOR) .
 
 install:
 	docker extension install -f $(TAGGED_IMAGE_NAME)

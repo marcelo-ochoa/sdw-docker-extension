@@ -29,8 +29,10 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     go build -trimpath -ldflags="-s -w" -o bin/service
 
-FROM alpine:3.15
-RUN apk update && apk add --no-cache bash tini openjdk17-jre-headless && \
+FROM openjdk:22-jdk-slim-bullseye
+RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> /etc/apt/sources.list && \
+    apt update && apt install -y ttyd tini && \
+    apt clean && \
     mkdir -p /home/sdw/config && \
     echo "sdw:x:1000:1000:sdw:/home/sdw:/bin/bash" >> /etc/passwd && \
     echo "sdw:x:1000:sdw" >> /etc/group
@@ -61,4 +63,4 @@ COPY --from=builder /backend/bin/service /
 COPY --chown=1000:1000 sdw.sh adb.sh cleanup.sh default.pwd adb.pwd /home/sdw/
 RUN  sed -i 's/\${JAVA}/\${JAVA} -Xmx4096m/g' /opt/ords/bin/ords
 
-ENTRYPOINT ["/sbin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/service", "-socket", "/run/guest-services/sdw-docker-extension.sock"]
