@@ -1,8 +1,8 @@
 all: clean extension install
 
 ORG=mochoa
-VERSION=23.2
-MINOR=3
+VERSION=23.3
+MINOR=0
 IMAGE_NAME=$(ORG)/sdw-docker-extension
 TAGGED_IMAGE_NAME=$(IMAGE_NAME):$(VERSION).${MINOR}
 
@@ -21,6 +21,8 @@ validate: extension
 
 update: extension
 	docker extension update -f $(TAGGED_IMAGE_NAME)
+	docker exec mochoa_sdw-docker-extension-desktop-extension-service /home/sdw/cleanup.sh
+	docker restart mochoa_sdw-docker-extension-desktop-extension-service
 
 multiarch:
 	docker buildx create --name=buildx-multi-arch --driver=docker-container --driver-opt=network=host
