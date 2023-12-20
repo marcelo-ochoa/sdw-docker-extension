@@ -1,12 +1,12 @@
 FROM --platform=$BUILDPLATFORM node:17.7-alpine3.14 AS client-builder
-ARG VERSION=23.3
+ARG VERSION=23.4
 ARG MINOR=0
-ARG PATCH=289
-ARG BUILD=1830
+ARG PATCH=346
+ARG BUILD=1619
 WORKDIR /app/client
 # https://www.oracle.com/database/sqldeveloper/technologies/db-actions/download/#
-ADD ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip .
-RUN unzip -d /opt/ords ords-${VERSION}.${MINOR}.${PATCH}.${BUILD}.zip
+ADD https://download.oracle.com/otn_software/java/ords/ords-latest.zip .
+RUN unzip -d /opt/ords ords-latest.zip
 # cache packages in layer
 COPY client/package.json /app/client/package.json
 COPY client/package-lock.json /app/client/package-lock.json
@@ -29,13 +29,16 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     go build -trimpath -ldflags="-s -w" -o bin/service
 
-FROM openjdk:22-jdk-slim-bullseye
-RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> /etc/apt/sources.list && \
-    apt update && apt install -y ttyd tini && \
-    apt clean && \
-    mkdir -p /home/sdw/config && \
-    echo "sdw:x:1000:1000:sdw:/home/sdw:/bin/bash" >> /etc/passwd && \
-    echo "sdw:x:1000:sdw" >> /etc/group
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.3.3
+RUN set -eux \
+    && if [ "$(arch)" == "x86_64" ]; then TTYD_PKG=ttyd.i686; fi \
+    && if [ "$(arch)" == "aarch64" ]; then TTYD_PKG=ttyd.aarch64; fi \
+    && curl -o /usr/bin/ttyd -L https://github.com/tsl0922/ttyd/releases/download/1.7.4/${TTYD_PKG} \
+    && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && microdnf install -y tini unzip ncurses \
+    && gu install js && microdnf clean all && chmod +x /usr/bin/ttyd \
+    && mkdir -p /home/sdw/config \
+    && echo "sdw:x:1000:1000:sdw:/home/sdw:/bin/bash" >> /etc/passwd \
+    && echo "sdw:x:1000:sdw" >> /etc/group
 
 LABEL org.opencontainers.image.title="Oracle SQLDeveloper Web"
 LABEL org.opencontainers.image.description="Docker Extension for using an embedded version of Oracle SQLDeveloper Web."
@@ -55,9 +58,9 @@ LABEL com.docker.desktop.extension.icon="https://raw.githubusercontent.com/marce
 LABEL com.docker.extension.detailed-description="Oracle SQL Developer is a free, integrated development environment that simplifies the development and management of Oracle Database in both traditional and Cloud deployments. \
     SQL Developer offers complete end-to-end development of your PL/SQL applications, a worksheet for running queries and scripts, a DBA console for managing the database, \
     a reports interface, a complete data modeling solution, and a migration platform for moving your 3rd party databases to Oracle."
-COPY sdw.svg metadata.json docker-compose.yml ./
+COPY sdw.svg metadata.json docker-compose.yml /
 
-COPY --from=client-builder /app/client/dist ui
+COPY --from=client-builder /app/client/dist /ui
 COPY --from=client-builder /opt/ords /opt/ords
 COPY --from=builder /backend/bin/service /
 COPY --chown=1000:1000 sdw.sh adb.sh cleanup.sh default.pwd adb.pwd /home/sdw/
